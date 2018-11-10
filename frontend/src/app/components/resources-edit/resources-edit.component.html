@@ -1,0 +1,105 @@
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Container fluid  -->
+  <!-- ============================================================== -->
+  <div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+      <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">Editar recurso</h3>
+      </div>
+      <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/resources">Recursos</a></li>
+          <li *ngIf="resource" class="breadcrumb-item">{{resource.name}}</li>
+        </ol>
+      </div>
+      <div>
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+             <form *ngIf="resource" [formGroup]="resourceForm" (ngSubmit)="saveResource()" class="form-material m-t-40">
+              <div class="form-group">
+                <label class="font-medium m-t-30">Nombre</label>
+                <input type="text" formControlName="name" class="form-control form-control-line" required> 
+              </div>
+              <div class="form-group">
+                <label class="font-medium m-t-30">Descripción</label>
+                <textarea formControlName="description" class="form-control form-control-line" rows="3" required></textarea>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label class="font-medium m-t-30">Projecto</label>
+                  <select *ngIf="projects" formControlName="project_id" class="form-control" required>
+                    <option>---</option>
+                    <option *ngFor="let project of projects" [ngValue]="project.id" >{{project.name}}</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label class="font-medium m-t-30">Duración estimada (días)</label>
+                  <input type="number" formControlName="estimated_duration" class="form-control form-control-line"  > 
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label class="font-medium m-t-30">Tipo</label>
+                  <select formControlName="type" class="form-control" required >
+                    <option>---</option>
+                    <option value="Web page">Página Web</option>
+                    <option value="Banner">Banner</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="font-medium m-t-30">Prioridad</label>
+                  <select formControlName="priority" class="form-control">
+                    <option>---</option>
+                    <option [ngValue]="3">Baja</option>
+                    <option [ngValue]="2">Media</option>
+                    <option [ngValue]="1">Alta</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="font-medium m-t-30">Fase actual</label>
+                  <select formControlName="current_phase" class="form-control">
+                    <option [ngValue]="1">Preproducción</option>
+                    <option [ngValue]="2">Producción</option>
+                    <option [ngValue]="3">Postproducción</option>
+                    <option [ngValue]="4">Control de calidad</option>
+                  </select>
+                </div>
+              </div>
+              
+              
+              <div class="tags-default form-group">
+                <label>Etiquetas</label>
+                <input type="text" class="form-control" formControlName="tags">
+                <span class="help">Escribe las etiquetas separadas por coma ","</span>
+              </div>
+              <button type="submit" class="btn waves-effect waves-light btn-outline-primary">Guardar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Container fluid  -->
+  <!-- ============================================================== -->
+</div>
+
